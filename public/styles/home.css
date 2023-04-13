@@ -20,12 +20,44 @@ main {
   border-radius: 10px;
 }
 
-#setting {
-  margin: 10px;
+#slider {
+  width: 100%;
+  height: 7px;
+  outline: none;
+  border-radius: 3px;
 }
 
-.right-panel {
-  width: 100%;
+select {
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  text-indent: 5px;
+  box-sizing: content-box;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+}
+
+.left-panel {
+  background-color: #94fbf6;
+  padding: 10px;
+  border-radius: 10px;
+  width: 25%;
+}
+
+#experiment-setup {
+  width: 90%;
+}
+
+.left-panel label {
+  font-weight: bold;
+  font-size: medium;
+  display: block;
+}
+
+.middle-panel {
+  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -39,7 +71,7 @@ main {
 
 .experiment {
   width: 60em;
-  background-color: #d6d8d5;
+  /* background-color: #d6d8d5; */
   display: flex;
   justify-content: center;
   border-radius: 10px;
