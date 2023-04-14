@@ -1,48 +1,94 @@
 let titrantUsed = 0;
 var liquid = document.getElementById("liquid");
-// liquid.style.fill = "orange";
+let start = document.getElementById("startBtn");
+let reset = document.getElementById("resetBtn");
+let details = document.getElementById("details");
+let calculation = document.getElementById("calculation");
+let titrantUsedDom = document.getElementById("titrant-used");
+let message = document.getElementById("message");
 
 var buretteLiquid = document.getElementById("buretteLiquid");
 buretteLiquid.classList.remove("buretteAnimation");
+var rightPanel = document.getElementById("rightPanel");
 
 var drip = document.getElementById("drip");
-console.log(drip);
 if (drip.getAttribute("dur") === null) {
   drip.setAttribute("dur", "0s");
 } else {
   drip.removeAttribute("dur");
 }
 
+function resetdrip() {
+  details.innerHTML = "";
+  calculation.innerHTML = "";
+  titrantUsedDom.innerHTML = "";
+  message.style.display = "block";
+
+  var form = document.getElementById("data");
+  var elements = form.elements;
+  for (var i = 0, len = elements.length; i < len; ++i) {
+    elements[i].disabled = false;
+  }
+  start.disabled = false;
+  start.classList.remove("disabled");
+  reset.disabled = true;
+  reset.classList.add("disabled");
+  liquid.style.fill = "rgb(69, 135, 234)";
+  buretteLiquid.style.animationName = "none";
+}
+
 function startdrip() {
+  titrantUsed = 0;
+  buretteLiquid.style.animationName = "draw";
+  buretteLiquid.style.animationPlayState = "running";
+  message.style.display = "none";
+
+  //disable form
+  var form = document.getElementById("data");
+  var elements = form.elements;
+  for (var i = 0, len = elements.length; i < len; ++i) {
+    elements[i].disabled = true;
+  }
+  start.disabled = true;
+  start.classList.add("disabled");
+
   let colorchange = (Math.random() * 50).toFixed(1);
   colorchange = parseFloat(colorchange);
-  console.log(colorchange);
-  // speed=1;
-
+  buretteLiquid.classList.add("buretteAnimation");
   let intervalID = setInterval(() => {
     titrantUsed = parseFloat(titrantUsed) + 0.1;
     titrantUsed = parseFloat(titrantUsed).toFixed(1);
-    document.getElementById("titrant-used").innerHTML =
-      "Titrant Used : " + titrantUsed + "ml";
+
+    titrantUsedDom.innerHTML =
+      "Volume of Titrant Used(V2) : " + titrantUsed + " ml";
+
     if (titrantUsed == colorchange) {
+      buretteLiquid.style.animationPlayState = "paused";
+
+      calculation.innerHTML = `<div><br><div><b>Calculation : </b></div><div><b>N1*V1=N2*V2</b></div><div><b>N1=(N2*V2)/V1<b></div><div>N1=${
+        elements[7].value
+      }*${titrantUsed}/${elements[8].value}</div><div>N2=${(
+        (elements[7].value * titrantUsed) /
+        elements[8].value
+      ).toFixed(2)} N</div><div><i><b>Normality of Titrate(Analyte) = ${(
+        (elements[7].value * titrantUsed) /
+        elements[8].value
+      ).toFixed(2)} N</b></i></div></div>`;
       liquid.style.fill = "purple";
       drip.removeAttribute("dur");
-      buretteLiquid.style.animationPlayState = "paused";
+      reset.disabled = false;
+      reset.classList.remove("disabled");
+
       clearInterval(intervalID);
     }
   }, 100);
-  buretteLiquid.classList.add("buretteAnimation");
+
+  details.innerHTML = `<div><b>Objective : </b>Determine the Normality of titrate</div><ul><li><b>Titrant:</b> ${elements[0].value}</li><li><b>Titrate(Analyte): </b>${elements[4].value}</li><li><b>Indicator:</b> ${elements[10].value}</li><li><b>Volume of Titrate(Analyte)(V1):</b> ${elements[8].value} ml</li><li><b>Normality of Titrant (N2):</b> ${elements[7].value} N</li></ul>`;
 
   if (drip.getAttribute("dur") === null) {
-    drip.setAttribute("dur", "1s");
+    let speed = elements[2].value;
+    drip.setAttribute("dur", (1.1 - speed).toString() + "s");
   } else {
     drip.removeAttribute("dur");
   }
 }
-
-document.querySelectorAll(".nav-link").forEach((item) => {
-  item.addEventListener("click", (e) => {
-    document.querySelector(".active").classList.remove("active");
-    item.classList.add("active");
-  });
-});

@@ -21,59 +21,108 @@
 
 <body>
     <%- include("./partials/header"); %>
-        <%- include("./partials/register") %>
-            <main>
-                <div class="container">
-                    <div class="left-panel">
-                        <form id="data">
-                            <div>
-                                <label for="titrants">Titrant : </label>
-                                <select id="titrants"></select>
-                            </div>
-                            <div>
-                                <label for="speed">Speed of Titrant : </label>
-                                <input id="speed" type="range" value="0.1" min="0.1" max="1" step="0.1"
-                                    oninput="this.nextElementSibling.value = this.value">
-                                <output>0.1</output><span>s</span>
-                            </div>
-                            <div>
-                                <label for="titrates"> Titrate : </label>
-                                <select id="titrates"></select>
-                            </div>
-                            <div>
-                                <label for="concentration">Normality of Titrate : </label>
-                                <input id="concentration" type="range" value="0.1" min="0.1" max="2" step="0.1"
-                                    oninput="this.nextElementSibling.value =this.value">
-                                <output>0.1</output><span> N</span>
-                            </div>
-                            <div>
-                                <label for="Volume">Volume of Titrant : </label>
-                                <input id="Volume" type="range" value="10" min="10" max="20" step="1"
-                                    oninput="this.nextElementSibling.value = this.value">
-                                <output>10</output><span> ml</span>
-                            </div>
-                            <div>
-                                <label for="indicators">Indicator : </label>
-                                <select id="indicators"></select>
-                            </div>
-                            <button id="startBtn" type="button" onclick="startdrip()">Start</button>
-                        </form>
-                    </div>
 
-                    <div class="middle-panel">
-                        <div class="experiment">
-                            <div>
+        <main>
+            <div class="container">
+                <div class="left-panel">
+                    <form id="data">
+                        <div>
+                            <label for="titrants">Titrant : </label>
+                            <select id="titrants"></select>
+                        </div>
+                        <div>
+                            <label for="speed">Speed of Titrant : </label>
+                            <input id="speed" type="range" value="0.1" min="0.1" max="1" step="0.1"
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output>0.1</output>
+                        </div>
+                        <div>
+                            <label for="titrates"> Titrate(Analyte) : </label>
+                            <select id="titrates"></select>
+                        </div>
+                        <div>
+                            <label for="concentration">Normality of Titrant : </label>
+                            <input id="concentration" type="range" value="0.1" min="0.1" max="2" step="0.1"
+                                oninput="this.nextElementSibling.value =this.value">
+                            <output>0.1</output><span> N</span>
+                        </div>
+                        <div>
+                            <label for="Volume">Volume of Titrate(Analyte) : </label>
+                            <input id="Volume" type="range" value="10" min="10" max="20" step="1"
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output>10</output><span> ml</span>
+                        </div>
+                        <div>
+                            <label for="indicators">Indicator : </label>
+                            <select id="indicators"></select>
+                        </div>
+                        <button id="startBtn" class="simulationBtn" type="button" onclick="startdrip()">Start</button>
+                        <button id="resetBtn" class="simulationBtn disabled" type="button" onclick="resetdrip()"
+                            disabled>Reset</button>
+                    </form>
+                </div>
 
-                                <%- include("./partials/experiment-setup.svg"); %>
-                            </div>
+                <<<<<<< HEAD <div class="middle-panel">
+                    <div class="experiment">
+                        <div>
+                            =======
+                            <main>
+                                <div class="container">
+                                    <div class="left-panel">
+                                        <form id="data">
+                                            <div>
+                                                <label for="titrants">Titrant : </label>
+                                                <select id="titrants"></select>
+                                            </div>
+                                            <div>
+                                                <label for="speed">Speed of Titrant : </label>
+                                                <input id="speed" type="range" value="0.1" min="0.1" max="1" step="0.1"
+                                                    oninput="this.nextElementSibling.value = this.value">
+                                                <output>0.1</output>
+                                            </div>
+                                            <div>
+                                                <label for="titrates"> Titrate(Analyte) : </label>
+                                                <select id="titrates"></select>
+                                            </div>
+                                            <div>
+                                                <label for="concentration">Normality of Titrant : </label>
+                                                <input id="concentration" type="range" value="0.1" min="0.1" max="2"
+                                                    step="0.1" oninput="this.nextElementSibling.value =this.value">
+                                                <output>0.1</output><span> N</span>
+                                            </div>
+                                            <div>
+                                                <label for="Volume">Volume of Titrate(Analyte) : </label>
+                                                <input id="Volume" type="range" value="10" min="10" max="20" step="1"
+                                                    oninput="this.nextElementSibling.value = this.value">
+                                                <output>10</output><span> ml</span>
+                                            </div>
+                                            <div>
+                                                <label for="indicators">Indicator : </label>
+                                                <select id="indicators"></select>
+                                            </div>
+                                            <button id="startBtn" class="simulationBtn" type="button"
+                                                onclick="startdrip()">Start</button>
+                                            <button id="resetBtn" class="simulationBtn disabled" type="button"
+                                                onclick="resetdrip()" disabled>Reset</button>
+                                        </form>
+                                    </div>
+                                    >>>>>>> setup2
+
+                                    <%- include("./partials/experiment-setup.svg"); %>
+                                </div>
                         </div>
                     </div>
 
                     <div class="right-panel">
                         <div id="titrant-used"></div>
                     </div>
-                </div>
-            </main>
+                    <div class="right-panel" id="rightPanel">
+                        <div id="message">Result will be displayed Here...</div>
+                        <div id="details"></div>
+                        <div id="titrant-used"></div>
+                        <div id="calculation"></div>
+                    </div>
+        </main>
 </body>
 
 <script src="./scripts/home.js">
