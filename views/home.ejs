@@ -64,54 +64,27 @@
 
                 <div class="middle-panel">
                     <div class="experiment">
-                        <%- include("./partials/experiment-setup.svg"); %>
+                        <div>
+                            <%- include("./partials/experiment-setup.svg"); %>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="right-panel" id="rightPanel">
-                <div id="message">Result will be displayed Here...</div>
-                <div id="details"></div>
-                <div id="titrant-used"></div>
-                <div id="calculation"></div>
+                <div class="right-panel" id="rightPanel">
+                    <div id="message">Result will be displayed Here...</div>
+                    <div id="details"></div>
+                    <div id="titrant-used"></div>
+                    <div id="calculation"></div>
+                </div>
             </div>
         </main>
 </body>
 
-<script src="./scripts/home.js">
-</script>
+<script src="./scripts/home.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
 
-<script>
-    var titrants = ["Hydrochloric acid", "Sulphuric acid", "Hydrobromic acid", "Oxalic acid", "Acetic acid"];
-    const titrantList = document.getElementById('titrants');
-    titrants.forEach((item) => {
-        const optiont = document.createElement('option');
-        optiont.innerText = item;
-        optiont.value = item;
-        titrantList.appendChild(optiont);
-    })
-    var titrates = ["Sodium hydroxide", "Potassium hydroxide", "Ammonia", "Sodium Carbonrate"];
-    const titratesList = document.getElementById('titrates');
-    titrates.forEach((item) => {
-        const optiont = document.createElement('option');
-        optiont.innerText = item;
-        optiont.value = item;
-        titratesList.appendChild(optiont);
-    })
-    var indicators = ["Methyl Orange", "Phenolphthalein", "Methyl red"];
-    const indicatorsList = document.getElementById('indicators');
-    indicators.forEach((item) => {
-        const optiont = document.createElement('option');
-        optiont.innerText = item;
-        optiont.value = item;
-        indicatorsList.appendChild(optiont);
-    });
-</script>
 <script type="text/javascript" src="./scripts/fancyselect.min.js"></script>
-
-
 
 </html>

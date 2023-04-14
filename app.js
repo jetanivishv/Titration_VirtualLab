@@ -14,6 +14,14 @@ app.get("/quiz", (req, res) => {
   res.render("quiz.ejs");
 });
 
+app.get("/theory", (req, res) => {
+  res.render("theory.ejs");
+});
+
+app.get("/procedure", (req, res) => {
+  res.render("procedure.ejs");
+});
+
 app.listen(port, () => {
   console.log("server is running on port " + port);
 });

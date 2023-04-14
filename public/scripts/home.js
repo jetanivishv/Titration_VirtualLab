@@ -92,3 +92,39 @@ function startdrip() {
     drip.removeAttribute("dur");
   }
 }
+
+var titrants = [
+  "Hydrochloric acid",
+  "Sulphuric acid",
+  "Hydrobromic acid",
+  "Oxalic acid",
+  "Acetic acid",
+];
+const titrantList = document.getElementById("titrants");
+titrants.forEach((item) => {
+  const optiont = document.createElement("option");
+  optiont.innerText = item;
+  optiont.value = item;
+  titrantList.appendChild(optiont);
+});
+var titrates = [
+  "Sodium hydroxide",
+  "Potassium hydroxide",
+  "Ammonia",
+  "Sodium Carbonrate",
+];
+const titratesList = document.getElementById("titrates");
+titrates.forEach((item) => {
+  const optiont = document.createElement("option");
+  optiont.innerText = item;
+  optiont.value = item;
+  titratesList.appendChild(optiont);
+});
+var indicators = ["Methyl Orange", "Phenolphthalein", "Methyl red"];
+const indicatorsList = document.getElementById("indicators");
+indicators.forEach((item) => {
+  const optiont = document.createElement("option");
+  optiont.innerText = item;
+  optiont.value = item;
+  indicatorsList.appendChild(optiont);
+});
