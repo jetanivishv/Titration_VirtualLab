@@ -145,7 +145,7 @@ input[type="range"]:focus::-moz-range-thumb {
   outline-offset: 0.125rem;
 }
 
-#startBtn,
+.simulationBtn,
 .butn {
   margin-top: 10px;
   width: 100%;
@@ -163,12 +163,12 @@ input[type="range"]:focus::-moz-range-thumb {
   padding: 7px 13px;
 }
 
-#startBtn:hover,
+#startBtn:hover,#resetBtn:hover
 .butn:hover {
   background-color: #053a5f !important;
 }
 
-#startBtn:active,
+#startBtn:active,#resetBtn:active
 .butn:active {
   box-shadow: 0 0 10px rgba(100, 100, 170, 0.93) !important;
 }
@@ -219,7 +219,7 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 
 .buretteAnimation {
-  animation: draw 200s linear forwards;
+  animation: draw 145s linear forwards;
   transform-origin: center bottom;
   transform: scaleY(1);
 }
