@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/quiz.css">
+    <link rel="stylesheet" href="./styles/home.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Acme&family=Montserrat:wght@100&family=Poppins:ital,wght@1,300&family=Roboto+Mono&family=Roboto:wght@100;400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <%- include("./partials/header"); %>
+        <div id="container1">
+            <div id="rules">
+                <ol>
+                    <li>The quiz may include multiple-choice, true/false, or short-answer questions, and students should
+                        answer each question to the best of their knowledge.</li>
+                    <li>The quiz may be used as a tool for self-assessment, and students should use the results to
+                        identify areas where they need to improve their knowledge or understanding.</li>
+                    <li>Each question will present a scenario involving a titration, including the identity of the
+                        titrant and analyte, the volumes and concentrations of the solutions used, and the endpoint
+                        indicator employed.</li>
+                    <li>Questions may require the student to calculate the concentration of the unknown solution, the
+                        volume of solution required to reach the endpoint, or other related values.</li>
+                    <li>The student must understand and be able to apply the concepts of molarity, and titration to
+                        solve problems related to acid-base, oxidation-reduction reactions.</li>
+                    <li>The student must demonstrate an understanding of the significance of the equivalence point and
+                        the importance of reaching it precisely in a titration.</li>
+                    <li>The quiz may include multiple-choice or calculation-based questions, and the student should be
+                        prepared to use the appropriate method to answer each question.</li>
+                    <li>The student must be familiar with common laboratory equipment used in titrations, such as
+                        burettes, pipettes, and volumetric flasks, and be able to use them accurately and precisely.
+                    </li>
+                    <li>The student should review and be familiar with the types of titrations used in different
+                        applications, such as in the analysis of environmental samples, pharmaceuticals, and food
+                        products.</li>
+                </ol>
+            </div>
+            <button id="start" type="button" class="btn btn-primary p-3" onclick="startQuiz()">START</button>
+            <div id="quizes" style="display:none;">
+                <div class="container">
+                    <div id="quiz" class="hidden">
+                        <div style="display: block; width: 100%;" id="nav">
+                            <p id="progressText"></p>
+                            <p id="score">Score 0</p>
+                        </div>
+                        <h2 id="question">Hi, what are you doing?</h2>
+                        <div class="op">
+                            <div class="options" id="option-1">
+                                <p class="option-id">A</p>
+                                <p class="choice-text" data-id="A">Option A</p>
+                            </div>
+                            <div class="options" id="option-2">
+                                <p class="option-id">B</p>
+                                <p class="choice-text" data-id="B">Option B</p>
+                            </div>
+                            <div class="options" id="option-3">
+                                <p class="option-id">C</p>
+                                <p class="choice-text" data-id="C">Option C</p>
+                            </div>
+                            <div class="options" id="option-4">
+                                <p class="option-id">D</p>
+                                <p class="choice-text" data-id="D">Option D</p>
+                            </div>
+                        </div>
+                        <div id="NextBtn">
+                            <button id="btnn" id="btn" class="btn">Next Question</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="./scripts/quiz.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+
+</html>
