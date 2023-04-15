@@ -1,41 +1,54 @@
 <link rel="stylesheet" href="./styles/header.css">
-
+<link rel="stylesheet" href="./styles/authentication.css">
+</link>
 
 <%- include("./register") %>
-    <nav class="navbar sticky-top navbar-expand-lg bg-white">
-        <div class="container">
-            <a class="navbar-brand" href="#">NU Virtual-Lab</a>
-            <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <img src="./images/menu.svg" alt="">
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item <%= theory %>">
-                        <a class="nav-link" aria-current="page" href="/theory">Theory</a>
-                    </li>
-                    <li class="nav-item <%= procedure %>">
-                        <a class="nav-link" href="/procedure">Procedure</a>
-                    </li>
-                    <li class="nav-item <%= quiz %>">
-                        <a class="nav-link" href="/quiz">Quiz</a>
-                    </li>
-                    <li class="nav-item <%= activity %>">
-                        <a class="nav-link" href="/activity">Activity</a>
-                    </li>
-                    <li class="nav-item <%= simulator %>">
-                        <a class="nav-link" href="/">Simulator</a>
-                    </li>
-                    <li class="nav-item <%= assignment %>">
-                        <a class="nav-link" href="/assignment">Assignment</a>
-                    </li>
-                </ul>
-                <span class="navbar-text d-flex">
-                    <button class="butn">Register</button>
-                    <button class="butn">login</button>
-                    <button class="butn">logout</button>
-                </span>
+    <%- include("./login") %>
+        <nav class="navbar sticky-top navbar-expand-lg bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="#">NU Virtual-Lab</a>
+                <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <img src="./images/menu.svg" alt="">
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item <%= theory %>">
+                            <a class="nav-link" aria-current="page" href="/theory">Theory</a>
+                        </li>
+                        <li class="nav-item <%= procedure %>">
+                            <a class="nav-link" href="/procedure">Procedure</a>
+                        </li>
+                        <li class="nav-item <%= quiz %>">
+                            <a class="nav-link" href="/quiz">Quiz</a>
+                        </li>
+                        <li class="nav-item <%= activity %>">
+                            <a class="nav-link" href="/activity">Activity</a>
+                        </li>
+                        <li class="nav-item <%= simulator %>">
+                            <a class="nav-link" href="/">Simulator</a>
+                        </li>
+                        <li class="nav-item <%= assignment %>">
+                            <a class="nav-link" href="/assignment">Assignment</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text d-flex">
+                        <% if(!(currentUser && currentUser.username)){ %>
+                            <button class="butn" data-bs-toggle="modal" data-bs-target="#signupModal">Register</button>
+                            <button class="butn" data-bs-toggle="modal" data-bs-target="#loginModal">login</button>
+                            <% } else { %>
+                                <a class="butn" href="/logout">logout</a>
+                                <% } %>
+                    </span>
+                    <% if(currentUser && currentUser.username){ %>
+                        <span id="profile-section" class="navbar-text d-flex">
+                            <img id="profile" src="./images/profile.jpg" alt="profile">
+                            <p id="profile-name">
+                                <%= currentUser.username %>
+                            </p>
+                        </span>
+                        <% } %>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>

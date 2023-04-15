@@ -5,8 +5,9 @@ body {
   font-family: "Poppins", sans-serif !important;
   font-family: "Roboto", sans-serif !important;
   font-size: 1.3em !important;
+  line-height: 0.9cm !important;
+  word-spacing: 0.5px;
 }
-
 main {
   display: flex;
   justify-content: center;

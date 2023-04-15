@@ -1,5 +1,21 @@
+body {
+  margin: 0;
+  font-family: "Acme", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 1.3em !important;
+  line-height: 0.9cm !important;
+  word-spacing: 0.5px;
+}
+
 #navbar-toggler {
   border: none;
+}
+
+.navbar > div {
+  padding: 0 !important;
+  margin-top: 0;
 }
 
 .nav-item {
@@ -44,4 +60,17 @@
 .active {
   background-color: #e9e9e9;
   border-radius: 5em;
+}
+
+#profile {
+  width: 54px;
+  height: 54px;
+}
+
+#profile-section {
+  margin-left: 24px;
+}
+
+#profile-name {
+  margin: 10px;
 }

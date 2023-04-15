@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  font-family: "Acme", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 1.3em !important;
+  line-height: 0.9cm !important;
+  word-spacing: 0.5px;
+}
+
 main {
   margin-top: 20px;
 }
