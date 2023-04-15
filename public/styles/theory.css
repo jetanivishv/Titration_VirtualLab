@@ -64,8 +64,7 @@ h2 {
   color: #053a5fdf !important;
 }
 
-ul,
-ol:nth-of-type(1) {
+ul {
   line-height: 0.5cm;
   margin-top: 15px;
 }
