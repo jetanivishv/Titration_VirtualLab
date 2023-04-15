@@ -41,6 +41,11 @@ body {
   padding: 10px;
 }
 
+.nav img,
+.navp img {
+  width: 40%;
+}
+
 .theory1 {
   background-color: aliceblue;
   margin-top: 10px;
@@ -59,11 +64,85 @@ h2 {
   color: #053a5fdf !important;
 }
 
-ul {
+ul,
+ol:nth-of-type(1) {
   line-height: 0.5cm;
   margin-top: 15px;
 }
 
 main {
-  margin-bottom: 50px;
+  margin-bottom: 50px !important;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+h1,
+h3 {
+  text-align: center;
+}
+
+p {
+  text-align: left;
+}
+
+#matchcol {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+
+.draggable-list {
+  padding: 5px;
+}
+
+.acti {
+  list-style: none;
+  padding: 10px;
+  margin: 5px;
+  background-color: #cfd8dc;
+  border: 1px solid #b0bec5;
+  color: #263238;
+  cursor: grab;
+}
+
+.over {
+  background-color: #90a4ae;
+}
+
+table {
+  max-width: 620px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 10px 10px;
+}
+
+td {
+  border: 1px solid #90a4ae;
+}
+
+button {
+  margin: auto;
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #607d8b;
+  color: #fff;
+}
+
+#endMessage {
+  display: none;
+}
+
+#matchButton {
+  width: 10%;
 }

@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  font-family: "Acme", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 1.3em !important;
+  line-height: 0.9cm !important;
+  word-spacing: 0.5px;
+}
+
+#assignments {
+  width: 85%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.Assquestion {
+  font-size: large;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.quelist {
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+
+.category {
+  padding: 20px;
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: 30px;
+  padding: 10px;
+  text-align: center;
+  background-color: aliceblue;
+  border-radius: 10px;
+  font-style: normal;
+  color: slateblue !important;
+}
+
+.mainTopic {
+  font-weight: bold;
+  font-size: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: aliceblue;
+  margin-top: 20px;
+  text-align: center;
+  font-style: normal;
+  color: #053a5fdf !important;
+}
