@@ -28,7 +28,7 @@ const sendEmail = async (email, uniqueString) => {
               font-family: Arial, sans-serif;
               font-size: 16px;
               line-height: 1.5;
-              color: #333333;
+              color: #333333 !important;
               background-color: #caf0f8;
               padding: 20px;
               border-radius: 10px;
@@ -44,10 +44,7 @@ const sendEmail = async (email, uniqueString) => {
             #content p {
               margin-bottom: 10px;
             }
-            
-            #content strong {
-              color: #000000 !important;
-            }
+          
             
             #content #verification-id{
               background-color: skyblue;
