@@ -46,7 +46,7 @@ const sendEmail = async (email, uniqueString) => {
             }
             
             #content strong {
-              color: #000000;
+              color: #000000 !important;
             }
             
             #content #verification-id{

@@ -70,7 +70,6 @@ app.use((req, res, next) => {
   }
 
   res.locals.message = req.flash("message");
-  console.log(res.locals);
 
   next();
 });
