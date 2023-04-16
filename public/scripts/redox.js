@@ -39,6 +39,7 @@ function resetdrip() {
 
 function startdrip() {
   titrantUsed = 0;
+  liquid.style.fill = "purple";
   buretteLiquid.style.animationName = "draw";
   buretteLiquid.style.animationPlayState = "running";
   message.style.display = "none";
@@ -74,7 +75,7 @@ function startdrip() {
         (elements[7].value * titrantUsed) /
         elements[8].value
       ).toFixed(2)} N</b></i></div></div>`;
-      liquid.style.fill = "purple";
+      liquid.style.fill = "pink";
       drip.removeAttribute("dur");
       reset.disabled = false;
       reset.classList.remove("disabled");
@@ -83,7 +84,7 @@ function startdrip() {
     }
   }, 100);
 
-  details.innerHTML = `<div><b>Objective : </b>Determine the Normality of titrate</div><ul><li><b>Titrant:</b> ${elements[0].value}</li><li><b>Titrate(Analyte): </b>${elements[4].value}</li><li><b>Indicator:</b> ${elements[10].value}</li><li><b>Volume of Titrate(Analyte)(V1):</b> ${elements[8].value} ml</li><li><b>Normality of Titrant (N2):</b> ${elements[7].value} N</li></ul>`;
+  details.innerHTML = `<div><b>Objective : </b>Determine the Normality of titrate</div><ul><li><b>Titrant:</b> ${elements[0].value}</li><li><b>Titrate(Analyte): </b>${elements[4].value}</li><li><b>Indicator:</b>Self Indicator</li><li><b>Volume of Titrate(Analyte)(V1):</b> ${elements[8].value} ml</li><li><b>Normality of Titrant (N2):</b> ${elements[7].value} N</li></ul>`;
 
   if (drip.getAttribute("dur") === null) {
     let speed = elements[2].value;
@@ -93,13 +94,9 @@ function startdrip() {
   }
 }
 
-var titrants = [
-  "Hydrochloric acid",
-  "Sulphuric acid",
-  "Hydrobromic acid",
-  "Oxalic acid",
-  "Acetic acid",
-];
+var titrants = ["Potassium permanganate", "Potassium dichromate"];
+
+var titrates = ["Oxalic Acid", "Ferus Amonium Sulfate"];
 const titrantList = document.getElementById("titrants");
 titrants.forEach((item) => {
   const optiont = document.createElement("option");
@@ -107,24 +104,11 @@ titrants.forEach((item) => {
   optiont.value = item;
   titrantList.appendChild(optiont);
 });
-var titrates = [
-  "Sodium hydroxide",
-  "Potassium hydroxide",
-  "Ammonia",
-  "Sodium Carbonrate",
-];
+
 const titratesList = document.getElementById("titrates");
 titrates.forEach((item) => {
   const optiont = document.createElement("option");
   optiont.innerText = item;
   optiont.value = item;
   titratesList.appendChild(optiont);
-});
-var indicators = ["Methyl Orange", "Phenolphthalein", "Methyl red"];
-const indicatorsList = document.getElementById("indicators");
-indicators.forEach((item) => {
-  const optiont = document.createElement("option");
-  optiont.innerText = item;
-  optiont.value = item;
-  indicatorsList.appendChild(optiont);
 });

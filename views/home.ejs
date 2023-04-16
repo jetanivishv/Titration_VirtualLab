@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="./styles/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -21,66 +21,207 @@
 
 <body>
     <%- include("./partials/header"); %>
-
-        <main>
-            <div class="container">
-                <div class="left-panel">
-                    <form id="data">
-                        <div>
-                            <label for="titrants">Titrant : </label>
-                            <select id="titrants"></select>
-                        </div>
-                        <div>
-                            <label for="speed">Speed of Titrant : </label>
-                            <input id="speed" type="range" value="0.1" min="0.1" max="1" step="0.1"
-                                oninput="this.nextElementSibling.value = this.value">
-                            <output>0.1</output>
-                        </div>
-                        <div>
-                            <label for="titrates"> Titrate(Analyte) : </label>
-                            <select id="titrates"></select>
-                        </div>
-                        <div>
-                            <label for="concentration">Normality of Titrant : </label>
-                            <input id="concentration" type="range" value="0.1" min="0.1" max="2" step="0.1"
-                                oninput="this.nextElementSibling.value =this.value">
-                            <output>0.1</output><span> N</span>
-                        </div>
-                        <div>
-                            <label for="Volume">Volume of Titrate(Analyte) : </label>
-                            <input id="Volume" type="range" value="10" min="10" max="20" step="1"
-                                oninput="this.nextElementSibling.value = this.value">
-                            <output>10</output><span> ml</span>
-                        </div>
-                        <div>
-                            <label for="indicators">Indicator : </label>
-                            <select id="indicators"></select>
-                        </div>
-                        <button id="startBtn" class="simulationBtn" type="button" onclick="startdrip()">Start</button>
-                        <button id="resetBtn" class="simulationBtn disabled" type="button" onclick="resetdrip()"
-                            disabled>Reset</button>
-                    </form>
+        <%- include("./flash"); %>
+            <main>
+                <div id="effect">
+                    <span>Welcome to the Titration Virtual Lab of Nirma University!</span>
                 </div>
+                <section>
+                    <div class="row">
+                        <h1 style="
+                    margin-bottom: 20px;
+                ">About us</h1>
+                        <div class="card" style="
+                    padding: 60px 100px;
+                    color: rgb(58, 58, 58);
+                ">
+                            <h4 style="line-height: 0.8cm;">We offer virtual laboratory simulations for students and
+                                researchers
+                                in various scientific
+                                and engineering disciplines. Our platform provides hands-on learning experiences through
+                                simulations that replicate real-world labs. With a team of experienced educators, we are
+                                committed to delivering high-quality educational content that fosters curiosity,
+                                critical
+                                thinking, and innovation. As part of Nirma University's commitment to excellence in
+                                education and research, we strive to support the academic and professional growth of our
+                                users through innovative virtual learning solutions. Our website includes comprehensive
+                                resources on titration theory, procedures, simulations, quizzes, assignments, and
+                                activity
+                                games. Join us on this exciting journey of exploration and discovery!
+                            </h4>
 
-                <div class="middle-panel">
-                    <div class="experiment">
-                        <div>
-                            <%- include("./partials/experiment-setup.svg"); %>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <h1>Mentors</h1>
+                    </div>
+                    <div class="row1">
+                        <!-- Column 1-->
+                        <div class="column1">
+                            <div class="card card1 m-3">
+                                <div class="img-container">
+                                    <img src="./images/m1.png" />
+                                </div>
+                                <h3>Amita Chaudhary</h3>
+                                <p>Professor</p>
 
-                <div class="right-panel" id="rightPanel">
-                    <div id="message">Result will be displayed Here...</div>
-                    <div id="details"></div>
-                    <div id="titrant-used"></div>
-                    <div id="calculation"></div>
-                </div>
-            </div>
-        </main>
+                            </div>
+                        </div>
+                        <!-- Column 2-->
+                        <div class="column1">
+                            <div class="card card1 m-3">
+                                <div class="img-container">
+                                    <img src="./images/m2.png" />
+                                </div>
+                                <h3>Neha Patni</h3>
+                                <p>Professor</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <h1>Our Team</h1>
+                    </div>
+                    <div class="row">
+                        <!-- Column 1-->
+                        <div class="column">
+                            <div class="card card1">
+                                <div class="img-container">
+                                    <img src="./images/t1.jpg" />
+                                </div>
+                                <h3>Vishv Jetani</h3>
+                                <p>Developer</p>
+                                <div class="icons">
+
+                                    <a href="https://www.linkedin.com/in/vishv-jetani-aa7672202/">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/jetanivishv">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="mailto:jetanivishv@gmail.com">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column 2-->
+                        <div class="column">
+                            <div class="card card1">
+                                <div class="img-container">
+                                    <img src="./images/t2.jpeg" />
+                                </div>
+                                <h3>Jatin Undhad</h3>
+                                <p>Developer</p>
+                                <div class="icons">
+
+                                    <a href="https://www.linkedin.com/in/jatinundhad/">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/jatinundhad">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="mailto:jatinundhad0712@gmail.com">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column 3-->
+                        <div class="column">
+                            <div class="card card1">
+                                <div class="img-container">
+                                    <img src="./images/t3.jpg" />
+                                </div>
+                                <h3>Vedant Modi</h3>
+                                <p>Developer</p>
+                                <div class="icons">
+
+                                    <a href="https://www.linkedin.com/in/vedant-modi-0495161bb/">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/vedant8689">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="mailto:vedantmodi8689@gmail.com">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Column 1-->
+                        <div class="column">
+                            <div class="card card1">
+                                <div class="img-container">
+                                    <img src="./images/t4.png" />
+                                </div>
+                                <h3>Nupur Parikh</h3>
+                                <p>Developer</p>
+                                <div class="icons">
+
+                                    <a href="https://in.linkedin.com/in/nupurparikh02">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/nupurparikh">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="mailto:nupurparikh02@gmail.com">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column 2-->
+                        <div class="column">
+                            <div class="card card1">
+                                <div class="img-container">
+                                    <img src="./images/t5.png" />
+                                </div>
+                                <h3>Hetvi Bhansali</h3>
+                                <p>Developer</p>
+                                <div class="icons">
+                                    <a href="https://www.linkedin.com/in/hetvibhansali11/">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/hpb11">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="mailto:hetvipb11@gmail.com">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column 3-->
+                        <div class="column">
+                            <div class="card card1">
+                                <div class="img-container">
+                                    <img src="./images/t6.png" />
+                                </div>
+                                <h3>Devangi Hadiya</h3>
+                                <p>Developer</p>
+                                <div class="icons">
+
+                                    <a href="https://www.linkedin.com/in/devangi-hadiya-245121210/">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/devangi02">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="mailto:devangihadiya@gmail.com">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
 </body>
 
-<script src="./scripts/home.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>

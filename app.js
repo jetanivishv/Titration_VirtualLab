@@ -14,6 +14,7 @@ dotenv.config();
 import "./utils/passportGoogle.js";
 import randomString from "./utils/randomString.js";
 import sendEmail from "./utils/sendMail.js";
+import flash from "connect-flash";
 
 const app = express();
 const port = 3000;
@@ -22,6 +23,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash());
 
 const dbUrl = "mongodb://localhost:27017/virtualLab";
 const store = new MongoStore({
@@ -67,13 +69,25 @@ app.use((req, res, next) => {
     res.locals.currentUser = null;
   }
 
+  res.locals.message = req.flash("message");
+  console.log(res.locals);
+
   next();
 });
+
+const isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    req.session.returnTo = req.originalUrl;
+    req.flash("message", "You must required login");
+    return res.redirect("/");
+  }
+  next();
+};
 
 app.get(
   "/",
   (req, res, next) => {
-    res.locals.simulator = "active";
+    res.locals.simulator = "";
     res.locals.theory = "";
     res.locals.procedure = "";
     res.locals.quiz = "";
@@ -88,7 +102,44 @@ app.get(
 );
 
 app.get(
+  "/redox",
+  isLoggedIn,
+  (req, res, next) => {
+    res.locals.simulator = "active";
+    res.locals.theory = "";
+    res.locals.procedure = "";
+    res.locals.quiz = "";
+    res.locals.assignment = "";
+    res.locals.activity = "";
+
+    next();
+  },
+  (req, res) => {
+    res.render("redox.ejs");
+  }
+);
+
+app.get(
+  "/acidbase",
+  isLoggedIn,
+  (req, res, next) => {
+    res.locals.simulator = "active";
+    res.locals.theory = "";
+    res.locals.procedure = "";
+    res.locals.quiz = "";
+    res.locals.assignment = "";
+    res.locals.activity = "";
+
+    next();
+  },
+  (req, res) => {
+    res.render("acidbase.ejs");
+  }
+);
+
+app.get(
   "/quiz",
+  isLoggedIn,
   (req, res, next) => {
     res.locals.simulator = "";
     res.locals.theory = "";
@@ -106,6 +157,7 @@ app.get(
 
 app.get(
   "/theory",
+  isLoggedIn,
   (req, res, next) => {
     res.locals.simulator = "";
     res.locals.theory = "active";
@@ -123,6 +175,7 @@ app.get(
 
 app.get(
   "/procedure",
+  isLoggedIn,
   (req, res, next) => {
     res.locals.simulator = "";
     res.locals.theory = "";
@@ -139,6 +192,7 @@ app.get(
 
 app.get(
   "/assignment",
+  isLoggedIn,
   (req, res, next) => {
     res.locals.simulator = "";
     res.locals.theory = "";
@@ -155,6 +209,7 @@ app.get(
 
 app.get(
   "/activity",
+  isLoggedIn,
   (req, res, next) => {
     res.locals.simulator = "";
     res.locals.theory = "";
