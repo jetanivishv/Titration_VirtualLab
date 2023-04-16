@@ -1,5 +1,13 @@
-function endQuiz(){
-    document.getElementById("container1").innerHTML=score;
+let score = 0;
+function endQuiz() {
+  document.getElementById("container1").innerHTML = `
+  <div class="container mt-5" style="background-color:aliceblue;color: #053a5fdf;padding: 30px;border-radius: 10px;">
+  <h1>Thanks for attempting the Quiz</h1>
+    <h3 style="
+    margin-bottom: 36px;
+">Your Scrore: ${score}</h3>
+    <a class="butn mt-2" href="/quiz">Try again with some New Questions</a>
+    </div>`;
 }
 
 function startQuiz() {
@@ -14,7 +22,6 @@ function startQuiz() {
   const quiz = document.getElementById("quiz");
   let currentQuestion;
   let acceptingAnswers = true;
-  let score = 0;
   let questionCounter = 0;
   let availableQuestions = [];
   let questions = [];
@@ -23,17 +30,17 @@ function startQuiz() {
   let flag = false;
   let classToApply;
 
-  let MAX_QUESTIONS=10;
+  let MAX_QUESTIONS = 10;
 
   const fetchQuestions = () => {
-    fetch('./Questions/questions.json')
+    fetch("./Questions/questions.json")
       .then((res) => {
         return res.json();
       })
-      .then((loadedQuestions) => { 
-        questions=loadedQuestions;     
+      .then((loadedQuestions) => {
+        questions = loadedQuestions;
         startGame(); // move the function call inside this block
-    })
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -50,16 +57,16 @@ function startQuiz() {
     availableQuestions = [...questions];
     nextquestion();
     setTimeout(() => {
-        quiz.classList.remove('hidden');
-},500);
+      quiz.classList.remove("hidden");
+    }, 500);
   };
   let nextquestion;
 
   nextquestion = () => {
-    if(questionCounter>MAX_QUESTIONS){
-        endQuiz();
-       }
-   
+    if (questionCounter > MAX_QUESTIONS) {
+      endQuiz();
+    }
+
     if (a != 0) {
       a.remove(classToApply);
     }
@@ -93,14 +100,20 @@ function startQuiz() {
       const selectedChoice = e.target;
       const selectedAnswer = selectedChoice.dataset["id"];
       classToApply =
-      selectedAnswer === currentQuestion.Correct[currentQuestion.Correct.length-1] ? "correct" : "incorrect";
+        selectedAnswer ===
+        currentQuestion.Correct[currentQuestion.Correct.length - 1]
+          ? "correct"
+          : "incorrect";
       if (classToApply === "correct") {
-          incrementScore(CORRECT_BONUS);
-        } else {
-            let data = document.getElementsByClassName("choice-text");
+        incrementScore(CORRECT_BONUS);
+      } else {
+        let data = document.getElementsByClassName("choice-text");
 
         for (let i = 0; i < data.length; i++) {
-          if (data[i].dataset["id"] == currentQuestion.Correct[currentQuestion.Correct.length-1]) {
+          if (
+            data[i].dataset["id"] ==
+            currentQuestion.Correct[currentQuestion.Correct.length - 1]
+          ) {
             b = data[i].parentElement.classList;
             b.add("correct");
             flag = true;

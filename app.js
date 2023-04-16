@@ -9,6 +9,11 @@ import session from "express-session";
 import User from "./model/User.js";
 import ExpressError from "./utils/ExpressError.js";
 import AsyncCatch from "./utils/AsyncCatch.js";
+import dotenv from "dotenv";
+dotenv.config();
+import "./utils/passportGoogle.js";
+import randomString from "./utils/randomString.js";
+import sendEmail from "./utils/sendMail.js";
 
 const app = express();
 const port = 3000;
@@ -54,7 +59,14 @@ app.use(express.urlencoded({ extended: "true" }));
 app.use(express.json());
 
 app.use((req, res, next) => {
-  res.locals.currentUser = req.user;
+  if (req.user && req.user.username) {
+    res.locals.currentUser = req.user.username;
+  } else if (req.user && req.user.google.name) {
+    res.locals.currentUser = req.session.passport.user.google.name;
+  } else {
+    res.locals.currentUser = null;
+  }
+
   next();
 });
 
@@ -160,35 +172,93 @@ app.get(
 app.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/theory",
+    failureRedirect: "/userNotFound",
   }),
   (req, res) => {
     res.redirect("/theory");
   }
 );
 
+app.get("/userNotFound", (req, res, next) => {
+  next(new ExpressError("User Not Found.", 404));
+});
+
 app.post(
   "/register",
-  AsyncCatch(async (req, res) => {
-    try {
-      const { username, email, password } = req.body;
-      const user = new User({ username, email });
-      const registered_user = await User.register(user, password);
+  AsyncCatch(async (req, res, next) => {
+    let { username } = req.body;
+    const existingUser = await User.findOne({ username: username.trim() });
+    if (existingUser) {
+      return next(new ExpressError("User Already Exists.", 409));
+    }
+    next();
+  }),
+  AsyncCatch(async (req, res, next) => {
+    let { username, email, password } = req.body;
+
+    const uniqueString = randomString();
+    const isValid = false;
+
+    const user = new User({
+      username: username.trim(),
+      email: email.trim(),
+      isValid,
+      uniqueString,
+    });
+
+    const registered_user = await User.register(user, password.trim());
+    sendEmail(email.trim(), uniqueString);
+
+    return res.render("emailVerification.ejs", { registered_user });
+  })
+);
+
+app.post(
+  "/verifyEmail/:id",
+  AsyncCatch(async (req, res, next) => {
+    const registered_user = await User.findOne({
+      uniqueString: req.body.uuid.trim(),
+    });
+
+    const { id } = req.params;
+
+    if (registered_user) {
       req.login(registered_user, (err) => {
-        if (err) return next(err);
-        return res.redirect("/theory");
+        if (err) return next(new ExpressError("Internal Server Error.", 500));
       });
-    } catch (e) {
-      next(e);
+
+      registered_user.isValid = true;
+      await registered_user.save();
+      return res.redirect("/theory");
+    } else {
+      await User.deleteOne({ _id: id });
+      return next(new ExpressError("Email ID is Not Verified.", 403));
     }
   })
 );
 
 app.get("/logout", (req, res) => {
   req.logout((err) => {
-    if (err) return next(err);
+    if (err) return next(new ExpressError("Internal Server Error.", 500));
     res.redirect("/theory");
   });
+});
+
+app.get(
+  "/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+app.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/userNotFound" }),
+  (req, res, next) => {
+    res.redirect("/getinfo");
+  }
+);
+
+app.get("/getinfo", (req, res, next) => {
+  res.redirect("/theory");
 });
 
 app.all(

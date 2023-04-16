@@ -3,9 +3,23 @@ const { Schema } = mongoose;
 import passportLocalMongoose from "passport-local-mongoose";
 
 const userSchema = new Schema({
+  google: {
+    name: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+  },
   email: {
     type: String,
-    required: true,
+  },
+  isValid: {
+    type: Boolean,
+    default: false,
+  },
+  uniqueString: {
+    type: String,
   },
 });
 

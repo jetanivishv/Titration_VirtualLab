@@ -34,18 +34,18 @@
                         </li>
                     </ul>
                     <span class="navbar-text d-flex">
-                        <% if(!(currentUser && currentUser.username)){ %>
+                        <% if(!currentUser){ %>
                             <button class="butn" data-bs-toggle="modal" data-bs-target="#signupModal">Register</button>
                             <button class="butn" data-bs-toggle="modal" data-bs-target="#loginModal">login</button>
-                            <% } else { %>
+                            <% }else{ %>
                                 <a class="butn" href="/logout">logout</a>
                                 <% } %>
                     </span>
-                    <% if(currentUser && currentUser.username){ %>
+                    <% if(currentUser){ %>
                         <span id="profile-section" class="navbar-text d-flex">
                             <img id="profile" src="./images/profile.jpg" alt="profile">
                             <p id="profile-name">
-                                <%= currentUser.username %>
+                                <%= currentUser %>
                             </p>
                         </span>
                         <% } %>
