@@ -20,6 +20,56 @@
 
 <body>
     <%- include("./partials/header"); %>
+        <div class="act">
+            <h1>Quiz-Match the Columns</h1>
+            <main class="container" id="matchcol">
+                <div class="game">
+                    <ul class="draggable-list">
+                        <li id="e1" draggable="true" class="acti">Titrant</li>
+                        <li id="e2" draggable="true" class="acti">Reactant</li>
+                        <li id="e3" draggable="true" class="acti">Indicator</li>
+                        <li id="e4" draggable="true" class="acti">Titrator</li>
+                    </ul>
+                </div>
+                <div class="game">
+                    <ul class="draggable-list">
+                        <li id="s4" draggable="true" class="acti">Conical Flask</li>
+                        <li id="s3" draggable="true" class="acti">Phenolpthaelin</li>
+                        <li id="s2" draggable="true" class="acti">xN NaOH</li>
+                        <li id="s1" draggable="true" class="acti">1N HCl</li>
+                    </ul>
+                </div>
+            </main>
+            <div id="endMessage">
+                <h3>Well Done!!!!</h3>
+                <table>
+                    <tr>
+                        <th>Column-A</th>
+                        <th>Column-B</th>
+                    </tr>
+                    <tr>
+                        <td>Titrant</td>
+                        <td>1N HCl</td>
+                    </tr>
+                    <tr>
+                        <td>Reactant</td>
+                        <td>xN NaOH</td>
+                    </tr>
+                    <tr>
+                        <td>Indicator</td>
+                        <td>Phenolpthaelin</td>
+                    </tr>
+                    <tr>
+                        <td>Titrator</td>
+                        <td>Conical Flask</td>
+                    </tr>
+                </table>
+
+                <div class="d-flex justify-content-center">
+                    <button class="butn" id="matchButton" onclick="playAgain()">Play Again</button>
+                </div>
+            </div>
+        </div>
         <main id="assignments">
         </main>
 </body>
@@ -29,5 +79,7 @@
     crossorigin="anonymous"></script>
 <script src="./Questions/assignment.js"></script>
 <script src="./scripts/assignmentrender.js"></script>
+<script src="./scripts/assignment.js"></script>
+
 
 </html>

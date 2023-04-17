@@ -21,9 +21,11 @@ passport.use(
       passReqToCallback: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {
-      // Check if the user already exists in the database
       const existingUser = await User.findOne({
-        "google.email": profile.emails[0].value,
+        $and: [
+          { "google.email": profile.emails[0].value },
+          { "google.name": profile.displayName },
+        ],
       });
       if (existingUser) {
         // If the user already exists, return the user

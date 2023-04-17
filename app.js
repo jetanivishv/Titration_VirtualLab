@@ -240,14 +240,23 @@ app.get("/userNotFound", (req, res, next) => {
 app.post(
   "/register",
   AsyncCatch(async (req, res, next) => {
-    let { username } = req.body;
-    const existingUser = await User.findOne({ username: username.trim() });
+    let { username, email } = req.body;
+    const existingUser = await User.findOne({
+      $or: [
+        {
+          username: username.trim(),
+        },
+        {
+          email: email.trim(),
+        },
+      ],
+    });
     if (existingUser) {
       return next(new ExpressError("User Already Exists.", 409));
     }
     next();
   }),
-  AsyncCatch(async (req, res, next) => {
+  AsyncCatch(async (req, res) => {
     let { username, email, password } = req.body;
 
     const uniqueString = randomString();

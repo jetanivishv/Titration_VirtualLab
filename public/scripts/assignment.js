@@ -40,6 +40,10 @@ function dragDrop() {
   }
 
   if (counter === 4) {
+    const matches = document.querySelectorAll(".game");
+    for (let match of matches) {
+      match.style.display = "none";
+    }
     endMessage.style.display = "block";
   }
 
@@ -80,6 +84,10 @@ function playAgain() {
   counter = 0;
   endMessage.style.display = "none";
   draggableListItems.forEach((item) => {
+    const matches = document.querySelectorAll(".game");
+    for (let match of matches) {
+      match.style.display = "block";
+    }
     document.getElementById(item.id).style.display = "block";
   });
 }
