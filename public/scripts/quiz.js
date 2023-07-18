@@ -5,7 +5,7 @@ function endQuiz() {
   <h1>Thanks for attempting the Quiz</h1>
     <h3 style="
     margin-bottom: 36px;
-">Your Scrore: ${score}</h3>
+">Your Scrore: ${score} / 10</h3>
     <a class="butn mt-2" href="/quiz">Try again with some New Questions</a>
     </div>`;
 }

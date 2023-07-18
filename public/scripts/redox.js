@@ -39,7 +39,7 @@ function resetdrip() {
 
 function startdrip() {
   titrantUsed = 0;
-  liquid.style.fill = "purple";
+  liquid.style.fill = "grey";
   buretteLiquid.style.animationName = "draw";
   buretteLiquid.style.animationPlayState = "running";
   message.style.display = "none";

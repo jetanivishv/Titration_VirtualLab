@@ -92,7 +92,7 @@ app.get(
     res.locals.quiz = "";
     res.locals.assignment = "";
     res.locals.activity = "";
-
+    res.locals.ref="";
     next();
   },
   (req, res) => {
@@ -110,6 +110,7 @@ app.get(
     res.locals.quiz = "";
     res.locals.assignment = "";
     res.locals.activity = "";
+    res.locals.ref = "";
 
     next();
   },
@@ -128,6 +129,7 @@ app.get(
     res.locals.quiz = "";
     res.locals.assignment = "";
     res.locals.activity = "";
+    res.locals.ref = "";
 
     next();
   },
@@ -146,6 +148,7 @@ app.get(
     res.locals.quiz = "active";
     res.locals.assignment = "";
     res.locals.activity = "";
+    res.locals.ref = "";
 
     next();
   },
@@ -164,6 +167,7 @@ app.get(
     res.locals.quiz = "";
     res.locals.assignment = "";
     res.locals.activity = "";
+    res.locals.ref = "";
 
     next();
   },
@@ -182,6 +186,7 @@ app.get(
     res.locals.quiz = "";
     res.locals.assignment = "";
     res.locals.activity = "";
+    res.locals.ref = "";
     next();
   },
   (req, res) => {
@@ -199,10 +204,29 @@ app.get(
     res.locals.quiz = "";
     res.locals.assignment = "active";
     res.locals.activity = "";
+    res.locals.ref="";
     next();
   },
   (req, res) => {
     res.render("assignment.ejs");
+  }
+);
+
+app.get(
+  "/ref",
+  isLoggedIn,
+  (req, res, next) => {
+    res.locals.simulator = "";
+    res.locals.theory = "";
+    res.locals.procedure = "";
+    res.locals.quiz = "";
+    res.locals.assignment = "";
+    res.locals.activity = "";
+    res.locals.ref="active";
+    next();
+  },
+  (req, res) => {
+    res.render("ref.ejs");
   }
 );
 
@@ -216,12 +240,16 @@ app.get(
     res.locals.quiz = "";
     res.locals.assignment = "";
     res.locals.activity = "active";
+    res.locals.ref="";
     next();
   },
   (req, res) => {
     res.render("activity.ejs");
   }
 );
+
+
+
 
 app.post(
   "/login",
@@ -240,20 +268,29 @@ app.get("/userNotFound", (req, res, next) => {
 app.post(
   "/register",
   AsyncCatch(async (req, res, next) => {
-    let { username, email } = req.body;
+    let { username } = req.body;
     const existingUser = await User.findOne({
       $or: [
         {
           username: username.trim(),
-        },
-        {
-          email: email.trim(),
         },
       ],
     });
     if (existingUser) {
       return next(new ExpressError("User Already Exists.", 409));
     }
+    let { email } = req.body;
+    const existingEmail = await User.findOne({
+      $or: [
+        {
+          email: email.trim(),
+        },
+      ],
+    });
+    if (existingEmail) {
+      return next(new ExpressError("E-mail already registered.", 409));
+    }
+
     next();
   }),
   AsyncCatch(async (req, res) => {
@@ -333,6 +370,7 @@ app.all(
     res.locals.quiz = "";
     res.locals.assignment = "";
     res.locals.activity = "";
+    res.locals.ref="";
     next();
   },
   (req, res, next) => {
@@ -344,6 +382,7 @@ app.all(
 app.use((err, req, res, next) => {
   res.locals.simulator = "";
   res.locals.theory = "";
+  res.locals.ref="";
   res.locals.procedure = "";
   res.locals.quiz = "";
   res.locals.assignment = "";
